@@ -4,6 +4,18 @@ Welcome to the Scout Design Engineer take-home assessment! You'll be building an
 
 **We suggest spending up to 2 hours on this take-home assessment, but you may spend as long as you'd like.**
 
+## ‼️‼️‼️ A quick note ‼️‼️‼️
+
+Look, I know that if you put this brief into Cursor it comes up with something that's pretty decent.
+I did it myself and it took 2 minutes to get something that fills the requirements.
+Honestly, that's great! If you do that as a starting point, that's really great -- it's something we encourage at Scout, and it's how we build a lot of product.
+
+But, again, I did it myself. We're looking for exceptional design engineers; engineers who can do things that we can't do unless we spend an inordinate amount of time on it, because they've honed their craft.
+
+**The best thing you can do to move forward in this process is to amaze us.** Spend the 2 hours focusing on showing me the one thing you are exceptional at. Whether it's design, micro-interactions, UX -- whatever it is, I'm looking to be awed by _something_, so please focus on that!
+
+-Noah
+
 ## 🎯 Objective
 
 Create a buttery-smooth, interactive search experience that demonstrates your ability to create delightful, beautiful, and intuitive frontend experiences.

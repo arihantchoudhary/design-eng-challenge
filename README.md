@@ -18,7 +18,7 @@ But, again, I did it myself. We're looking for exceptional design engineers; eng
 
 ## 🎯 Objective
 
-Create a buttery-smooth, interactive search experience that demonstrates your ability to create delightful, beautiful, and intuitive frontend experiences.
+Create a buttery-smooth, interactive search component that demonstrates your ability to create delightful, beautiful, and intuitive frontend experiences.
 
 ## 🚀 Getting Started
 
@@ -38,11 +38,16 @@ Create a buttery-smooth, interactive search experience that demonstrates your ab
 
 ## 🎨 What You Need to Build
 
-Design and implement a complete search interface with the following features:
+Design and implement a complete search bar component with the following features:
 
 - **Search bar** with real-time search
 - **Filters** with categories, tags, price range, and sorting options
 - **Results grid** displaying search results with smooth animations
+
+Note: This should be a component that might live in a bigger page, so think about:
+- How do you ensure that as much information as possible is visible to the user without it being overwhelming?
+- How do you ensure the user can perform actions in as few clicks as possible?
+- What tradeoffs do you have to make between the two of these?
 
 ## 🔧 Backend API Reference
 
@@ -92,10 +97,10 @@ const data = await response.json();
 
 We'll be looking at:
 
-- **User Experience** - Smooth interactions, intuitive design, attention to detail
-- **Design & Polish** - Visual design, animations, responsive behavior
-- **Technical Implementation** - Proper API integration, state management, performance
-- **Code Quality** - Clean, readable, well-structured code with proper TypeScript usage
+- **User Experience** (40%) - How much information is conveyed at once - too little, or does it feel overwhelming? How many clicks does it take to perform an action?
+- **Design & Polish** (40%) - Visual design, animations, responsive behavior, micro-interactions
+- **Technical Implementation** (10%) - Proper API integration, state management, performance
+- **Code Quality** (10%) - Clean, readable, well-structured code with proper TypeScript usage
 
 ---
 

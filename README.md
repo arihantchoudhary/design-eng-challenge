@@ -91,6 +91,7 @@ const data = await response.json();
 3. **Email us** with:
    - Link to your GitHub repository (make sure to invite `@nfichter` as a collaborator)
    - Link to your deployed demo
+   - One thing you think your implementation is top 1% quality in
    - Brief notes about your implementation choices and any trade-offs you made
 
 ## 🎯 Evaluation Criteria

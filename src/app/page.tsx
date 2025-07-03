@@ -6,7 +6,8 @@ import { themes, colorVariations, themeNames, Theme } from '@/types/theme';
 
 export default function Home() {
   const [currentTheme, setCurrentTheme] = useState<Theme>(themes.minecraft);
-  const [currentColorScheme, setCurrentColorScheme] = useState<any>(colorVariations.minecraft[0]);
+  type ColorScheme = (typeof colorVariations)[keyof typeof colorVariations][number];
+  const [currentColorScheme, setCurrentColorScheme] = useState<ColorScheme>(colorVariations.minecraft[0]);
 
   useEffect(() => {
     // Randomly choose from all available themes

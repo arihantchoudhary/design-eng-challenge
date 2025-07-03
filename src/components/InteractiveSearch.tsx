@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo, useRef, startTransition, mem
 import { motion, AnimatePresence, useSpring, useTransform, useMotionValue, useDragControls, useAnimationControls } from 'framer-motion';
 import { Search, Filter, X, Star, Clock, TrendingUp } from 'lucide-react';
 import { SearchResponse, SearchFilters, SearchItem } from '@/types';
-import { Theme } from '@/types/theme';
+import { Theme, colorVariations } from '@/types/theme';
 
 const SORT_OPTIONS = [
   { value: 'relevance', label: 'Most Relevant', icon: TrendingUp },
@@ -41,67 +41,67 @@ const useDebounce = <T,>(value: T, delay: number): T => {
 };
 
 // Advanced hook for intersection observer with TypeScript
-const useIntersectionObserver = (
-  callback: (entries: IntersectionObserverEntry[]) => void,
-  options?: IntersectionObserverInit
-) => {
-  const targetRef = useRef<HTMLDivElement>(null);
+// const useIntersectionObserver = (
+//   callback: (entries: IntersectionObserverEntry[]) => void,
+//   options?: IntersectionObserverInit
+// ) => {
+//   const targetRef = useRef<HTMLDivElement>(null);
   
-  useEffect(() => {
-    const target = targetRef.current;
-    if (!target) return;
+//   useEffect(() => {
+//     const target = targetRef.current;
+//     if (!target) return;
     
-    const observer = new IntersectionObserver(callback, {
-      threshold: 0.1,
-      rootMargin: '50px',
-      ...options
-    });
+//     const observer = new IntersectionObserver(callback, {
+//       threshold: 0.1,
+//       rootMargin: '50px',
+//       ...options
+//     });
     
-    observer.observe(target);
+//     observer.observe(target);
     
-    return () => {
-      observer.unobserve(target);
-      observer.disconnect();
-    };
-  }, [callback, options]);
+//     return () => {
+//       observer.unobserve(target);
+//       observer.disconnect();
+//     };
+//   }, [callback, options]);
   
-  return targetRef;
-};
+//   return targetRef;
+// };
 
 // Performance-optimized virtual scrolling hook
-const useVirtualization = (itemCount: number, itemHeight: number, containerHeight: number) => {
-  const [scrollTop, setScrollTop] = useState(0);
+// const useVirtualization = (itemCount: number, itemHeight: number, containerHeight: number) => {
+//   const [scrollTop, setScrollTop] = useState(0);
   
-  const startIndex = Math.floor(scrollTop / itemHeight);
-  const endIndex = Math.min(
-    startIndex + Math.ceil(containerHeight / itemHeight) + 1,
-    itemCount
-  );
+//   const startIndex = Math.floor(scrollTop / itemHeight);
+//   const endIndex = Math.min(
+//     startIndex + Math.ceil(containerHeight / itemHeight) + 1,
+//     itemCount
+//   );
   
-  const visibleItems = useMemo(() => {
-    const items = [];
-    for (let i = startIndex; i < endIndex; i++) {
-      items.push(i);
-    }
-    return items;
-  }, [startIndex, endIndex]);
+//   const visibleItems = useMemo(() => {
+//     const items = [];
+//     for (let i = startIndex; i < endIndex; i++) {
+//       items.push(i);
+//     }
+//     return items;
+//   }, [startIndex, endIndex]);
   
-  return {
-    visibleItems,
-    totalHeight: itemCount * itemHeight,
-    offsetY: startIndex * itemHeight,
-    onScroll: (e: React.UIEvent<HTMLDivElement>) => {
-      setScrollTop(e.currentTarget.scrollTop);
-    }
-  };
-};
+//   return {
+//     visibleItems,
+//     totalHeight: itemCount * itemHeight,
+//     offsetY: startIndex * itemHeight,
+//     onScroll: (e: React.UIEvent<HTMLDivElement>) => {
+//       setScrollTop(e.currentTarget.scrollTop);
+//     }
+//   };
+// };
 
 // Advanced TypeScript interfaces with strict typing
 interface SearchItemCardProps {
   item: SearchItem;
   index: number;
   theme: Theme;
-  colorScheme?: any;
+  colorScheme?: (typeof colorVariations)[keyof typeof colorVariations][number];
   onFavorite?: (itemId: string) => void;
   onQuickView?: (item: SearchItem) => void;
   isVisible?: boolean;
@@ -114,21 +114,21 @@ interface SearchItemCardRef {
 }
 
 // Advanced component composition types
-type SearchVariant = 'grid' | 'list' | 'masonry' | 'carousel';
-type SearchDensity = 'compact' | 'comfortable' | 'spacious';
+// type SearchVariant = 'grid' | 'list' | 'masonry' | 'carousel';
+// type SearchDensity = 'compact' | 'comfortable' | 'spacious';
 
-interface AdvancedSearchOptions {
-  variant: SearchVariant;
-  density: SearchDensity;
-  enableVirtualization: boolean;
-  enableInfiniteScroll: boolean;
-  enableKeyboardNavigation: boolean;
-  customAnimations?: boolean;
-}
+// interface AdvancedSearchOptions {
+//   variant: SearchVariant;
+//   density: SearchDensity;
+//   enableVirtualization: boolean;
+//   enableInfiniteScroll: boolean;
+//   enableKeyboardNavigation: boolean;
+//   customAnimations?: boolean;
+// }
 
 // Memoized component with forwardRef for performance
 const SearchItemCard = memo(forwardRef<SearchItemCardRef, SearchItemCardProps>((
-  { item, index, theme, colorScheme, onFavorite, onQuickView, isVisible = true, carouselRef }, 
+  { item, index, theme, colorScheme, onFavorite, carouselRef }, 
   ref
 ) => {
   const isMinecraft = theme.type === 'minecraft';
@@ -143,7 +143,7 @@ const SearchItemCard = memo(forwardRef<SearchItemCardRef, SearchItemCardProps>((
   const scale = useSpring(1, { stiffness: 400, damping: 30 });
   
   // Card selection and animation state
-  const [isSelected] = useState(false);
+  // const [isSelected] = useState(false);
   
   // Define text colors based on theme and color scheme
   const getTextColor = (type: 'primary' | 'secondary' | 'muted') => {
@@ -624,7 +624,7 @@ SearchItemCard.displayName = 'SearchItemCard';
 
 interface InteractiveSearchProps {
   theme: Theme;
-  colorScheme: any;
+  colorScheme: (typeof colorVariations)[keyof typeof colorVariations][number];
 }
 
 export default function InteractiveSearch({ theme, colorScheme }: InteractiveSearchProps) {
@@ -770,7 +770,7 @@ export default function InteractiveSearch({ theme, colorScheme }: InteractiveSea
     const newFilters = { ...filters, query: debouncedQuery };
     setFilters(newFilters);
     searchAPI(newFilters);
-  }, [debouncedQuery, searchAPI]);
+  }, [debouncedQuery, searchAPI, filters]);
 
   const handleFilterChange = useCallback((newFilters: Partial<SearchFilters>) => {
     const updatedFilters = { ...filters, ...newFilters };
@@ -1067,7 +1067,7 @@ export default function InteractiveSearch({ theme, colorScheme }: InteractiveSea
                     </label>
                     <select
                       value={filters.sortBy}
-                      onChange={(e) => handleFilterChange({ sortBy: e.target.value as any })}
+                      onChange={(e) => handleFilterChange({ sortBy: e.target.value as 'relevance' | 'rating' | 'price-asc' | 'price-desc' | 'newest' })}
                       className={`w-full ${theme.type}-input`}
                       style={{ 
                         fontFamily: theme.fonts.secondary, 
@@ -1181,7 +1181,7 @@ export default function InteractiveSearch({ theme, colorScheme }: InteractiveSea
                   fontSize: isMinecraft ? '18px' : '16px' 
                 }}
               >
-                {' '}for "{searchQuery}"
+                {' '}for &quot;{searchQuery}&quot;
               </span>
             )}
           </h2>
@@ -1200,7 +1200,7 @@ export default function InteractiveSearch({ theme, colorScheme }: InteractiveSea
           {SORT_OPTIONS.slice(0, 3).map((option) => (
             <button
               key={option.value}
-              onClick={() => handleFilterChange({ sortBy: option.value as any })}
+              onClick={() => handleFilterChange({ sortBy: option.value as 'relevance' | 'rating' | 'price-asc' | 'price-desc' | 'newest' })}
               className={`${theme.type}-button transition-all duration-200 ${
                 filters.sortBy === option.value
                   ? isMinecraft 
